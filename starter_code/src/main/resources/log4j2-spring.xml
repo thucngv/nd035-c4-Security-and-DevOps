@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- Splunk HTTP Event Collector Appender -->
+        <SplunkHttp
+                name="SplunkHttpAppender"
+                disableCertificateValidation="true"
+                index="main"
+                source="http:udacity"
+                sourceType="log4j2"
+                url="http://127.0.0.1:8082"
+                token="ea4731be-9758-4b36-a7a9-24fabb71c940">
+            <PatternLayout pattern="%m"/>
+        </SplunkHttp>
+        <Console name="ConsoleAppender">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} - %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- LOG everything at INFO level -->
+        <Root level="info">
+            <AppenderRef ref="SplunkHttpAppender"/>
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
